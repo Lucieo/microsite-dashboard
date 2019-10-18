@@ -3,8 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.5.0",
+    "@material-ui/icons": "^4.4.3",
+    "@material-ui/system": "^4.5.0",
+    "font-picker-react": "^3.4.0",
+    "material-ui-dropzone": "^2.4.4",
     "react": "^16.10.1",
+    "react-color": "^2.17.3",
     "react-dom": "^16.10.1",
+    "react-flip-move": "^3.0.3",
+    "react-images-upload": "^1.2.7",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
   },
   "scripts": {
