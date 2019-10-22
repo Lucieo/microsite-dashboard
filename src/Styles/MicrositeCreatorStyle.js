@@ -7,7 +7,8 @@ export default MicrositeCreatorStyles => ({
         maxWidth: 250,
         '& p':{
             fontSize:16
-        }
+        },
+        display:"inline-block"
     },
     fieldWrapper:{
         padding:10
@@ -35,6 +36,11 @@ export default MicrositeCreatorStyles => ({
     GridWrap:{
         padding:35
     },
+    ImgWrapper:{
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center"
+    },
     MsCreatorWrapper:{
         height: "calc(100vh - 140px)",
         display: "flex",
@@ -46,5 +52,8 @@ export default MicrositeCreatorStyles => ({
         justifyContent:"space-between",
         padding:'20px 0px'
     },
+    SummaryField:{
+        minWidth:250
+    }
 
   })

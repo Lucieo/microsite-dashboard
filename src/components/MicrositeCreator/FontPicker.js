@@ -10,21 +10,23 @@ class FontPickerModule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeFontFamily: "Open Sans",
+      activeFontFamily: window.props.tma_font || "Open Sans",
     };
   }
 
   render() {
-    const {classes}=this.props
+    const {classes, handleChange}=this.props
     return (
       <div>
         <FontPicker
           apiKey="AIzaSyDAJi3sNf-zAI801ioHiL76tUeuq-bHtgc"
           activeFontFamily={this.state.activeFontFamily}
-          onChange={nextFont =>
+          onChange={nextFont =>{
             this.setState({
               activeFontFamily: nextFont.family,
             })
+            handleChange('font',nextFont.family)
+          }
           }
         />
         <p className="apply-font" style={{fontWeight:"700"}}>{translations.fontExample || "Font Example"}</p>

@@ -46,6 +46,7 @@ export class MicrositeName extends Component {
           back={this.back}
           activeStep={activeStep}
           maxStep={maxStep}
+          disabledContinue={!values['micrositeName']}
         />
       </Grid>
 

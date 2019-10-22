@@ -48,6 +48,7 @@ class MicrositeStyleStep extends Component {
                 <ColorPicker
                   saveChanges={handleChange}
                   field="primaryColor"
+                  color={values.primaryColor}
                 />
               </Grid >
               <Grid md={6} className={classes.fieldWrapper}>
@@ -59,6 +60,7 @@ class MicrositeStyleStep extends Component {
                 <ColorPicker
                   saveChanges={handleChange}
                   field="secondaryColor"
+                  color={values.secondaryColor}
                 />
               </Grid >
             </Grid>
@@ -69,13 +71,16 @@ class MicrositeStyleStep extends Component {
           <Typography variant="h6" gutterBottom className={classes.fieldTitle}>
               {translations.micrositeStyleFont|| "Pick a font"}
           </Typography>
-          <FontPicker/>
+          <FontPicker
+            handleChange={handleChange}
+          />
           </div>
           <NavButtons
           continue={this.continue}
           back={this.back}
           activeStep={activeStep}
           maxStep={maxStep}
+          disabledContinue={!values['primaryColor'] || !values['secondaryColor'] || !values['font']}
           />
         </Grid>
 

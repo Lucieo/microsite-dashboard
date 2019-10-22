@@ -9,16 +9,22 @@ import MicrositeStepper from "./../components/MicrositeCreator/MicrositeStepper"
 import { withStyles } from '@material-ui/core';
 import styles from '../Styles/MicrositeCreatorStyle'
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
 const translations = window.props.translations
 
 export class MicrositeCreator extends Component {
   state = {
-    step: 3,
+    step: 4,
+    logo:undefined,
+    backgroundImage:undefined,
+    favicon:undefined,
+    font:window.props.tma_font || "Open Sans",
     micrositeName: '',
     primaryColor:window.props.tma_primary_color || "#009CDF",
     secondaryColor:window.props.tma_secondary_color || "#001640",
-    maxStep:4
+    maxStep:4,
+    creationStatus:undefined
   };
 
   // Proceed to next step
@@ -41,6 +47,25 @@ export class MicrositeCreator extends Component {
   handleChange = (input,value) => {
     this.setState({ [input]: value });
   };
+
+  //Make Call to create Microsite
+  handleMicrositeSubmit = ()=>{
+    this.nextStep()
+    let url = window.props.createMicrositeUrl;
+    let form_data = new FormData();
+    form_data.append('logo', this.state.logo, this.state.logo.name);
+    form_data.append('backgroundImage', this.state.backgroundImage, this.state.backgroundImage.name);
+    form_data.append('favicon', this.state.favicon, this.state.favicon.name);
+    axios.post(url, form_data, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    })
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => console.log(err))
+  }
 
   renderFormStep=(step, values)=>{
     switch (step) {
@@ -85,8 +110,13 @@ export class MicrositeCreator extends Component {
           values={values}
           activeStep={this.state.step}
           maxStep={this.state.maxStep}
+          handleMicrositeSubmit={this.handleMicrositeSubmit}
         />
       );
+      case 5:
+      return(
+        <p>Loading</p>
+      )
     }
   }
 

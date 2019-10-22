@@ -24,6 +24,7 @@ const NavButton =(props)=>{
             color="primary"
             variant="contained"
             onClick={props.continue}
+            disabled={props.disabledContinue}
           >
               {translations.Continue || "Continue"}
           </Button>
@@ -33,7 +34,7 @@ const NavButton =(props)=>{
             <Button
             color="primary"
             variant="contained"
-            onClick={props.continue}
+            onClick={props.handleMicrositeSubmit}
           >
               {translations.CreateMicrosite || "Create Microsite"}
           </Button>

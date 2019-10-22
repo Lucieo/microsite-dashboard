@@ -7,12 +7,13 @@ import { withStyles } from '@material-ui/styles';
 import styles from '../../Styles/MicrositeCreatorStyle'
 import FileUpload from "./FileUpload"
 
+
 const translations = window.props.translations
 
 const uploadFields=[
-  'Logo',
-  'BackgroundImage',
-  'Favicon'
+  'logo',
+  'backgroundImage',
+  'favicon'
 ]
 
 export class MicrositeImagesStep extends Component {
@@ -40,7 +41,7 @@ export class MicrositeImagesStep extends Component {
           </Typography>
           <div>
             {
-              uploadFields.map((field, key)=> <FileUpload key={key} field={field}/>)
+              uploadFields.map((field, key)=> <FileUpload key={key} field={field} handleChange={handleChange} fieldValue={values[field]}/>)
             }
           </div>
           <NavButtons
@@ -48,6 +49,7 @@ export class MicrositeImagesStep extends Component {
           back={this.back}
           activeStep={activeStep}
           maxStep={maxStep}
+          disabledContinue={!values['logo'] || !values['backgroundImage'] || !values['favicon']}
           />
         </Grid>
 

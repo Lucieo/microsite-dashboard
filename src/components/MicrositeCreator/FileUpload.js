@@ -3,6 +3,7 @@ import {DropzoneArea} from 'material-ui-dropzone'
 import { withStyles } from '@material-ui/styles';
 import styles from '../../Styles/MicrositeCreatorStyle';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 const translations = window.props.translations
  
@@ -10,13 +11,16 @@ class FileUpload extends Component{
   constructor(props){
     super(props);
     this.state = {
-      files: []
+      image: this.props.fieldValue || undefined,
+      uploadsNumber:0
     };
   }
-  handleChange(files){
-    this.setState({
-      files: files
-    });
+  handleImageChange=(files)=>{
+    this.setState(prevState=>({
+      image: files[0],
+      uploadsNumber:prevState.uploadsNumber+1
+    }));
+    this.props.handleChange(this.props.field, files[0])
   }
   render(){
     const {classes, field} = this.props
@@ -25,11 +29,26 @@ class FileUpload extends Component{
       <Typography variant="h6" gutterBottom  className={classes.fieldTitle}>
         {translations[field]|| field}
       </Typography>
-      <DropzoneArea 
-        onChange={this.handleChange.bind(this)}
-        dropzoneText={translations.uploadFile || "Upload your file"}
-        dropzoneClass={classes.dropZone}
-      />
+      <Grid container>
+        <Grid xs={6}>
+          <DropzoneArea 
+          onChange={files=>this.handleImageChange(files)}
+          dropzoneText={translations.uploadFile || "Upload your file"}
+          dropzoneClass={classes.dropZone}
+          filesLimit={1}
+          acceptedFiles={['image/*']}
+          showAlerts={false}
+          showPreviewsInDropzone={false}
+          key={this.state.uploadsNumber}
+          />
+        </Grid>
+        <Grid xs={6} className={classes.ImgWrapper}>
+          {
+            this.state.image &&
+            <img style={{maxWidth:"100%",maxHeight:100}} src={URL.createObjectURL(this.state.image)}/>
+          }
+        </Grid>
+      </Grid>
       </>
     )  
   }
