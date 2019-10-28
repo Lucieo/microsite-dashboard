@@ -1,9 +1,9 @@
-
 import React, { Component } from 'react';
 import MicrositeNameStep from '../components/MicrositeCreator/MicrositeNameStep';
 import MicrositeStyleStep from '../components/MicrositeCreator/MicrositeStyleStep';
 import MicrositeImagesStep from '../components/MicrositeCreator/MicrositeImagesStep';
 import MicrositeSummary from '../components/MicrositeCreator/MicrositeSummary';
+import LoadingPage from '../components/MicrositeCreator/LoadingPage';
 import Grid from '@material-ui/core/Grid';
 import MicrositeStepper from "./../components/MicrositeCreator/MicrositeStepper"
 import { withStyles } from '@material-ui/core';
@@ -20,7 +20,7 @@ export class MicrositeCreator extends Component {
     backgroundImage:undefined,
     favicon:undefined,
     font:window.props.tma_font || "Open Sans",
-    micrositeName: '',
+    micrositeName: undefined,
     primaryColor:window.props.tma_primary_color || "#009CDF",
     secondaryColor:window.props.tma_secondary_color || "#001640",
     maxStep:4,
@@ -53,9 +53,9 @@ export class MicrositeCreator extends Component {
     this.nextStep()
     let url = window.props.createMicrositeUrl;
     let form_data = new FormData();
-    form_data.append('logo', this.state.logo, this.state.logo.name);
-    form_data.append('backgroundImage', this.state.backgroundImage, this.state.backgroundImage.name);
-    form_data.append('favicon', this.state.favicon, this.state.favicon.name);
+    form_data.append('logo', this.state.logo);
+    form_data.append('backgroundImage', this.state.backgroundImage);
+    form_data.append('favicon', this.state.favicon);
     axios.post(url, form_data, {
       headers: {
         'content-type': 'multipart/form-data'
@@ -115,7 +115,7 @@ export class MicrositeCreator extends Component {
       );
       case 5:
       return(
-        <p>Loading</p>
+        <LoadingPage/>
       )
     }
   }
@@ -131,7 +131,7 @@ export class MicrositeCreator extends Component {
         padding:"10px 10px 10px 90px",
       }}
       >
-      <Typography variant="h5" gutterBottom>
+      <Typography className={classes.PageTitle} variant="h5" gutterBottom>
         {translations.createMicrosite || "Create Microsite"}
       </Typography>
       <div>

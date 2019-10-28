@@ -21,6 +21,15 @@ const theme = createMuiTheme({
       main: window.props.tma_secondary_color || "#001640",
     },
   },
+  typography: {
+    fontFamily: [
+      'Open Sans',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+  },
 });
 
 

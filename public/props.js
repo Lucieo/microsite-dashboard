@@ -11,5 +11,6 @@ window.props={
     },
     "tma_primary_color":"#009CDF",
     "tma_secondary_color":"#001640",
-    "tma_font":"Open Sans"
+    "tma_font":"Open Sans",
+    "createMicrositeUrl":"https://google.com"
 }

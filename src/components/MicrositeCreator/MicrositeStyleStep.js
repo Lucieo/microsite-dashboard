@@ -27,7 +27,7 @@ class MicrositeStyleStep extends Component {
       < >
         <React.Fragment>
         <Grid item md={6} className={classes.GridWrap}>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" gutterBottom className={classes.stepTitle}>
               {translations.micrositeStyleTitle || "Style"}
           </Typography>
           <Typography variant="body1" gutterBottom>
@@ -39,19 +39,19 @@ class MicrositeStyleStep extends Component {
                 {translations.micrositeColorsTitle|| "Pick Colors"}
             </Typography>
             <Grid container>
-              <Grid md={6} className={classes.fieldWrapper}>
+              <Grid item md={6} className={classes.fieldWrapper}>
                 <Typography variant="body1" gutterBottom>
                   {translations.micrositePrimary || "Primary Color :"}
                 </Typography>
               </Grid >
-              <Grid md={6} className={classes.fieldWrapper}>
+              <Grid item md={6} className={classes.fieldWrapper}>
                 <ColorPicker
                   saveChanges={handleChange}
                   field="primaryColor"
                   color={values.primaryColor}
                 />
               </Grid >
-              <Grid md={6} className={classes.fieldWrapper}>
+              <Grid item md={6} className={classes.fieldWrapper}>
                 <Typography variant="body1" gutterBottom>
                   {translations.micrositeSecondary || "Secondary Color :"}
                 </Typography>

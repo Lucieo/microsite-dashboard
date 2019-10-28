@@ -30,7 +30,7 @@ class FileUpload extends Component{
         {translations[field]|| field}
       </Typography>
       <Grid container>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <DropzoneArea 
           onChange={files=>this.handleImageChange(files)}
           dropzoneText={translations.uploadFile || "Upload your file"}
@@ -42,7 +42,7 @@ class FileUpload extends Component{
           key={this.state.uploadsNumber}
           />
         </Grid>
-        <Grid xs={6} className={classes.ImgWrapper}>
+        <Grid item xs={6} className={classes.ImgWrapper}>
           {
             this.state.image &&
             <img style={{maxWidth:"100%",maxHeight:100}} src={URL.createObjectURL(this.state.image)}/>

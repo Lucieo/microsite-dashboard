@@ -41,8 +41,15 @@ export default MicrositeCreatorStyles => ({
         alignItems:"center",
         justifyContent:"center"
     },
+    LoadWrapper:{
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"column",
+        margin:"0 auto"
+    },
     MsCreatorWrapper:{
-        height: "calc(100vh - 140px)",
+        height: "calc(100vh - 180px)",
         display: "flex",
         alignItems: "center"
     },
@@ -52,8 +59,18 @@ export default MicrositeCreatorStyles => ({
         justifyContent:"space-between",
         padding:'20px 0px'
     },
+    PageTitle:{
+        paddingLeft:30
+    },
+    stepTitle:{
+        fontSize:'1.4rem',
+        fontWeight:'bold'
+    },
     SummaryField:{
-        minWidth:250
+        minWidth:250,
+        '& span':{
+            fontWeight:"bold"
+        },
     }
 
   })

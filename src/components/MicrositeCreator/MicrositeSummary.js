@@ -7,21 +7,25 @@ import { withStyles } from '@material-ui/styles';
 import styles from '../../Styles/MicrositeCreatorStyle'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const translations = window.props.translations
 
 const colorFields = ['primaryColor','secondaryColor']
 const textFields = ['micrositeName','font']
 const imageFields = ['logo','favicon','backgroundImage']
-const displayableFields = textFields.concat(colorFields).concat(imageFields)
-console.log(displayableFields)
+const fieldsOrder=['micrositeName','font','primaryColor','secondaryColor','logo','backgroundImage','favicon']
+
 
 export class MicrositeSummary extends Component {
-
   getFieldDisplay = (element)=>{
     if(colorFields.includes(element[0])){
-      return <ColorDisplay color={element[1]}/>
+      return(
+        <div style={{width:30, height:30, backgroundColor:element[1], borderRadius:5}}>
+        </div>)
     }
     else if(textFields.includes(element[0])){
       return element[1]
@@ -31,9 +35,8 @@ export class MicrositeSummary extends Component {
         return <img style={{maxHeight:100,maxWidth:"100%"}} src={URL.createObjectURL(element[1])}/>
        }
        else{
-         return <p>NO IMAGE</p>
+         return <p style={{fontStyle:"italic"}}>NO IMAGE</p>
        } 
-
     }
   }
 
@@ -41,16 +44,16 @@ export class MicrositeSummary extends Component {
     const {values, classes}=this.props
     return(
       Object.entries(values)
-      .filter(element=>displayableFields.includes(element[0]))
+      .sort((a,b)=>fieldsOrder.indexOf(a[0])-fieldsOrder.indexOf(b[0]))
+      .filter(element=>fieldsOrder.includes(element[0]))
       .map((element, key)=> {
           return(
-          <ListItem>
-            <ListItemText className={classes.SummaryField}>
-                {translations[element[0]] || element[0]}
-            </ListItemText>
-            <ListItemText>
-                {this.getFieldDisplay(element)}
-            </ListItemText>
+          <ListItem key={key}>
+              <ListItemIcon>
+                {element[1] ? <CheckCircleOutlineIcon/> : <ClearIcon color="error"/>}
+              </ListItemIcon>
+              <ListItemText className={classes.SummaryField} primary={translations[element[0]] || element[0]}/>
+              {this.getFieldDisplay(element)}
           </ListItem>
           )
       }
@@ -64,7 +67,7 @@ export class MicrositeSummary extends Component {
     return (
       <>
         <Grid item md={6} className={[classes.GridWrap,classes.formWrapper].join(', ')}>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" gutterBottom className={classes.stepTitle}>
               {translations.micrositeSummaryTitle || "Summary"}
               <Typography variant="body1" gutterBottom>
               {translations.micrositeSummaryHelper || "Let's recap all information before launching microsite creation."}
@@ -84,6 +87,7 @@ export class MicrositeSummary extends Component {
           activeStep={activeStep}
           maxStep={maxStep}
           handleMicrositeSubmit={handleMicrositeSubmit}
+          disabledContinue={Object.entries(values).filter(([k,v],i)=>!!v)}
           />
         </Grid>
 
@@ -97,15 +101,3 @@ export class MicrositeSummary extends Component {
 
 export default withStyles(styles)(MicrositeSummary);
 
-
-const ColorDisplay = (props)=>{
-  return(
-    <div style={{width:30, height:30, backgroundColor:props.color, borderRadius:5}}>
-    </div>)
-}
-
-const ImageDisplay=(props)=>{
-  return(
-    <p>IMAGE</p>
-  )
-}

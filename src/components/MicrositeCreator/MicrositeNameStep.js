@@ -28,7 +28,7 @@ export class MicrositeName extends Component {
       < >
         <React.Fragment>
         <Grid item md={6} className={[classes.GridWrap,classes.formWrapper].join(', ')}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom className={classes.stepTitle}>
             {translations.micrositeNameTitle || "Name"}
             <Typography variant="body1" gutterBottom>
             {translations.micrositeNameHelper || "Set here the name of your microsite. It will be used to create the microsite and host your platform. Url can still be changed later on for a custom one."}

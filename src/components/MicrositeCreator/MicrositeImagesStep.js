@@ -33,7 +33,7 @@ export class MicrositeImagesStep extends Component {
       < >
 
         <Grid item md={6} className={[classes.GridWrap,classes.formWrapper].join(', ')}>
-          <Typography variant="h4" gutterBottom>
+          <Typography className={classes.stepTitle} variant="h4" gutterBottom>
               {translations.micrositeStyleTitle || "Images"}
               <Typography variant="body1" gutterBottom>
               {translations.micrositeImagesHelper || "Add all the images that will be used to create microsite theme."}
