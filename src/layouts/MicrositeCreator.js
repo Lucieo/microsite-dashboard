@@ -15,7 +15,7 @@ const translations = window.props.translations
 
 export class MicrositeCreator extends Component {
   state = {
-    step: 4,
+    step: 1,
     logo:undefined,
     backgroundImage:undefined,
     favicon:undefined,
@@ -56,6 +56,10 @@ export class MicrositeCreator extends Component {
     form_data.append('logo', this.state.logo);
     form_data.append('backgroundImage', this.state.backgroundImage);
     form_data.append('favicon', this.state.favicon);
+    form_data.append('primaryColor', this.state.primaryColor);
+    form_data.append('secondaryColor', this.state.secondaryColor);
+    form_data.append('micrositeName', this.state.micrositeName);
+    form_data.append('font', this.state.font);
     axios.post(url, form_data, {
       headers: {
         'content-type': 'multipart/form-data'

@@ -12,5 +12,6 @@ window.props={
     "tma_primary_color":"#009CDF",
     "tma_secondary_color":"#001640",
     "tma_font":"Open Sans",
-    "createMicrositeUrl":"https://google.com"
+    "checkMicrositeName":"https://studio.pprod1.the-mooc-agency.com/tma_cms_apps/microsite-manager/check-name",
+    "createMicrositeUrl":"https://studio.pprod1.the-mooc-agency.com/tma_cms_apps/microsite-manager/create-update"
 }
